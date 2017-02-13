@@ -21,7 +21,7 @@ mongooseConfig(config, logger);
 passportConfig();
 
 // Init routes
-routes(app);
+routes(app, config);
 
 // START AND STOP
 const server = app.listen(config.port, () => {

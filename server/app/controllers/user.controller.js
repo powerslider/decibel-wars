@@ -51,11 +51,13 @@ class UserController {
                 return;
             }
 
+            let crypto = new Crypto();
+
             if (collection.length === 0) {
                 var salt,
                     hashPass;
-                salt = Crypto.generateSalt();
-                hashPass = Crypto.generateHashPassword(salt, '123');
+                salt = crypto.generateSalt();
+                hashPass = crypto.generateHashPassword(salt, '123');
                 User.create({
                     username: 'monnn',
                     firstName: 'Moni',
