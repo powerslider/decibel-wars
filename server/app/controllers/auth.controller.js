@@ -3,10 +3,6 @@ import passport from 'passport';
 
 class AuthController {
 
-    signup(req, res, next) {
-        var userData = req.body;
-    }
-
     login(req, res, next) {
         var auth = passport.authenticate('local', (err, user) => {
             if (err) {
