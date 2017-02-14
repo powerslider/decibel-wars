@@ -63,3 +63,6 @@ typings/
 .env
 
 app/**/*.map
+
+# Application specific ignores
+server/app-build
