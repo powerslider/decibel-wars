@@ -1,5 +1,7 @@
 import DataIndexer from './data-indexer';
+import logger from '../config/logger';
 import _ from 'lodash';
+import songsData from '../../data/spotify-data.js';
 
 const INDEX_NAME = 'songs-index';
 const INDEX_TYPE = 'songs';
@@ -23,7 +25,7 @@ const INDEX_MAPPING_OBJ = {
     }
 };
 
-var makeBulkCallback = (docsList) -> {
+var makeBulkCallback = (docsList, callback) => {
     let playlistObjects = _.values(docsList.playlists);
     let bulkList = [];
     _.each(playlistObjects, playlist => {
@@ -39,11 +41,17 @@ var makeBulkCallback = (docsList) -> {
             );
         });
     });
+    callback(bulkList);
 };
 
 class SongIndexer extends DataIndexer {
 
     indexSongData() {
-        super.indexDocs(INDEX_NAME, 'songs', INDEX_MAPPING_OBJ, makeBulkCallback);
+        makeBulkCallback(songsData, (response) => {
+            logger.info("Bulk content prepared");
+            super.indexDocs(INDEX_NAME, 'songs', INDEX_MAPPING_OBJ, response);
+        });
     }
 }
+
+export default SongIndexer;

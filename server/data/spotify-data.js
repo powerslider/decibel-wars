@@ -1,4 +1,4 @@
-{
+export default {
   "playlists": {
     "Discover Weekly": {
       "name": "Discover Weekly",
