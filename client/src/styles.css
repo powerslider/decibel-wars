@@ -5,3 +5,11 @@ body {
     width: 100%;
     margin: 0px;
 }
+
+md-toolbar {
+    background: #2196f3;
+}
+
+[md-mini-fab] {
+    background-color: #00bcd4;
+}
