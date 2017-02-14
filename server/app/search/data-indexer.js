@@ -23,6 +23,10 @@ class DataIndexer {
         });
     }
 
+    initIndexMapping(mappingObj) {
+        return this.elasticClient.indices.putMapping(mappingObj);
+    }
+
     indexExists(indexName) {
         return this.elasticClient.indices.exists({
             index: indexName
@@ -44,7 +48,7 @@ class DataIndexer {
         });
     }
 
-    indexDocs(indexName, indexType, indexMappingCallBack, makeBulkCallback) {
+    indexDocs(indexName, indexType, mappingObj, makeBulkCallback) {
         this.indexExists(indexName)
             .then((exists) => {
                 if (exists) {
@@ -53,7 +57,9 @@ class DataIndexer {
             })
             .then(() => {
                 return this.initIndex(indexName)
-                    .then(indexMappingCallBack)
+                    .then(() => {
+                        this.initIndexMapping(mappingObj);
+                    })
                     .then(() => {
                         this.bulkAdd(indexName, indexType, makeBulkCallback);
                     });
