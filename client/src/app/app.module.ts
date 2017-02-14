@@ -24,7 +24,8 @@ import { DecibelToolbarComponent } from './decibel-toolbar/decibel-toolbar.compo
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule.forRoot()
+    MaterialModule.forRoot(),
+    FlexLayoutModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

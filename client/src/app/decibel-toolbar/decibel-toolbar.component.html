@@ -1,5 +1,8 @@
 <md-toolbar class="flex-container" fxLayoutAlign="center" color="primary">
-    <button md-mini-fab >
+    <md-input-container>
+        <input md-input placeholder="Search" [(ngModel)]="searchText" (keyup)="onKey()">
+    </md-input-container>
+    <button md-mini-fab (click)="onSearchClicked()">
         <md-icon>search</md-icon>
     </button>
 </md-toolbar>
