@@ -22,7 +22,7 @@ export default function (app, config) {
     router.post('/login', authCtrl.login);
     router.post('/logout', authCtrl.logout);
 
-    router.get('*', (req, res) => {
+    /*router.get('*', (req, res) => {
         // res.render('../views/index', {
         //     title: "Decibel Wars",
         //     currentUser: {
@@ -30,7 +30,7 @@ export default function (app, config) {
         //     }
         // });
         res.sendFile(path.join(config.root, 'client/src/index.html'));
-    });
+    });*/
 
     app.use('/', router);
 };
