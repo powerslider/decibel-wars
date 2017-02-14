@@ -19,14 +19,14 @@ export default function (app) {
     router.post('/login', authCtrl.login);
     router.post('/logout', authCtrl.logout);
 
-    router.get('*', (req, res) => {
+    /*router.get('*', (req, res) => {
         res.render('../views/index', {
             title: "Decibel Wars",
             currentUser: {
                 name: "pesho"
             }
         });
-    });
+    });*/
 
     app.use('/', router);
 };

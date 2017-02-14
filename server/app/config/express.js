@@ -32,6 +32,10 @@ export default function (app, config) {
 
     app.use(favicon(path.join(config.root, 'client/src/favicon.ico')));
 
+    // serve the ng build application as static resources
+    // to create directory 'app-build' - execute 'ng build' at client directory 
+    app.use(express.static('app-build'));
+
     // set all controllers
     // app.use('/', controllers);
 
