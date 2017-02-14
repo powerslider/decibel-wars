@@ -14,11 +14,13 @@ import { FlexLayoutModule} from '@angular/flex-layout';
  */
 import { AppComponent } from './app.component';
 import { DecibelToolbarComponent } from './decibel-toolbar/decibel-toolbar.component';
+import { SongCardComponent } from './song-card/song-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DecibelToolbarComponent
+    DecibelToolbarComponent,
+    SongCardComponent
   ],
   imports: [
     BrowserModule,
