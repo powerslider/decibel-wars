@@ -3,16 +3,28 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+/**
+ * Material imports
+ */
+import { MaterialModule } from '@angular/material';
+import { FlexLayoutModule} from '@angular/flex-layout'; 
+
+/**
+ * Application imports
+ */
 import { AppComponent } from './app.component';
+import { DecibelToolbarComponent } from './decibel-toolbar/decibel-toolbar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DecibelToolbarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    MaterialModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
