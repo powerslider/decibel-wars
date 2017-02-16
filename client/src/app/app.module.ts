@@ -38,7 +38,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     MaterialModule.forRoot(),
-    FlexLayoutModule.forRoot(),
+    FlexLayoutModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

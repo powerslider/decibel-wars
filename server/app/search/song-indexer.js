@@ -3,24 +3,34 @@ import logger from '../config/logger';
 import _ from 'lodash';
 import songsData from '../../data/spotify-data.js';
 
-const INDEX_NAME = 'songs-index';
-const INDEX_TYPE = 'songs';
+
+const INDEX_NAME = 'songs_index';
+const INDEX_TYPE = 'song';
 
 const INDEX_MAPPING_OBJ = {
     index: INDEX_NAME,
-    type: "song",
+    type: INDEX_TYPE,
     body: {
         properties: {
             album: {type: "string"},
             artists: {type: "string"},
             name: {type: "string"},
             id: {type: "string"},
-            suggest: {
-                type: "completion",
-                analyzer: "simple",
-                search_analyzer: "simple",
-                payloads: true
-            }
+            // name_suggest: {
+            //     type: "completion",
+            //     // analyzer: "simple",
+            //     // search_analyzer: "simple"
+            // },
+            // album_suggest: {
+            //     type: "completion",
+            //     // analyzer: "simple",
+            //     // search_analyzer: "simple",
+            // },
+            // artists_suggest: {
+            //     type: "completion",
+            //     // analyzer: "simple",
+            //     // search_analyzer: "simple",
+            // }
         }
     }
 };
@@ -29,14 +39,26 @@ var makeBulkCallback = (docsList, callback) => {
     let playlistObjects = _.values(docsList.playlists);
     let bulkList = [];
     _.each(playlistObjects, playlist => {
-        _.each(playlist.tracks, track => {
+        _.each(playlist.tracks, (track, i)=> {
             bulkList.push(
-                {index: {_index: INDEX_NAME, _type: INDEX_TYPE, _id: track.id}},
+                {index: {_index: INDEX_NAME, _type: INDEX_TYPE, _id: i}},
                 {
                     'album': track.album,
                     'artists': track.artists,
                     'name': track.name,
                     'id': track.id,
+                    // 'name_suggest': {
+                    //     input: track.name.split(" "),
+                    //     output: track.name,
+                    // },
+                    // 'album_suggest': {
+                    //     input: track.album.split(" "),
+                    //     output: track.album
+                    // },
+                    // 'artists_suggest': {
+                    //     input: track.artists.join(' ').split(' '),
+                    //     output: track.artists
+                    // }
                 }
             );
         });
@@ -49,8 +71,12 @@ class SongIndexer extends DataIndexer {
     indexSongData() {
         makeBulkCallback(songsData, (response) => {
             logger.info("Bulk content prepared");
-            super.indexDocs(INDEX_NAME, 'songs', INDEX_MAPPING_OBJ, response);
+            super.indexBulkDocs(INDEX_NAME, INDEX_TYPE, INDEX_MAPPING_OBJ, response);
         });
+    }
+
+    searchSongs(query) {
+        return super.multiMatchSearch(INDEX_NAME, INDEX_TYPE, ['name', 'album', 'artists'], query);
     }
 }
 
