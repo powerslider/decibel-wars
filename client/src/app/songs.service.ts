@@ -4,15 +4,16 @@ import { Observable } from 'rxjs/Observable';
 
 import { Song } from './model/song';
 
-const SONGS_API_URL: string = "";
+const API_URL: string = "http://localhost:5000"
+const SONGS_API_URL: string = API_URL + "/api/search";
 
 @Injectable()
 export class SongsService {
 
   constructor(private http: Http) { }
 
-  public getSongs(): Observable<Song[]> {
-    return this.http.get(SONGS_API_URL)
+  public getSongs(query: string): Observable<Song[]> {
+    return this.http.get(SONGS_API_URL + "?q=" + query)
       .map(this.extractData)
       .catch(this.handleError);
   }
