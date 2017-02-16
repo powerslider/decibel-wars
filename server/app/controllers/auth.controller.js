@@ -4,14 +4,14 @@ import passport from 'passport';
 class AuthController {
 
     login(req, res, next) {
-        var auth = passport.authenticate('local', (err, user) => {
+        let auth = passport.authenticate('local', (err, user) => {
             if (err) {
                 return next(err);
             }
             if (!user) {
                 res.send({success: false});
             }
-            req.logIn(user, function(err) {
+            req.logIn(user, (err) => {
                 if (err) {
                     return next(err);
                 }

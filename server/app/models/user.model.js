@@ -9,7 +9,6 @@ const userSchema = new mongoose.Schema({
     salt: String,
     hashPass: String,
     roles: [String],
-    // pins: [{type: Schema.Types.ObjectId, ref: 'Pin'}]
 });
 
 userSchema.method({

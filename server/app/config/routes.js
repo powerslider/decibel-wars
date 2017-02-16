@@ -1,5 +1,6 @@
 import UserController from '../controllers/user.controller';
 import AuthController from '../controllers/auth.controller';
+import SpotifyAuthController from '../controllers/spotify-auth.controller';
 import SongController from '../controllers/song.controller';
 import SongIndexer from '../search/song-indexer';
 import express from 'express';
@@ -11,6 +12,7 @@ export default function (app, config) {
 
     let userCtrl = new UserController();
     let authCtrl = new AuthController();
+    let spotifyAuthCtrl = new SpotifyAuthController();
     let songIdx = new SongIndexer();
     let songCtrl = new SongController(songIdx);
 
@@ -35,6 +37,12 @@ export default function (app, config) {
     router.post('/login', authCtrl.login);
     router.post('/logout', authCtrl.logout);
 
+    // router.get('/auth/spotify', authCtrl.loginSpotify);
+    // router.get('/auth/spotify/callback', authCtrl.loginSpotifyRedirect);
+
+    router.get('/auth/spotify', spotifyAuthCtrl.login);
+    router.get('/auth/spotify/callback', spotifyAuthCtrl.loginCallback);
+    router.get('/user-data', spotifyAuthCtrl.getUsersData);
     /*router.get('*', (req, res) => {
      // res.render('../views/index', {
      //     title: "Decibel Wars",
