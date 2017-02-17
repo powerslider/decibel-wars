@@ -34,11 +34,8 @@ export default function (app, config) {
         res.render('../../public/app/' + req.params.partialDir + '/' + req.params.partialName);
     });
 
-    router.post('/login', authCtrl.login);
-    router.post('/logout', authCtrl.logout);
-
-    // router.get('/auth/spotify', authCtrl.loginSpotify);
-    // router.get('/auth/spotify/callback', authCtrl.loginSpotifyRedirect);
+    router.post('/auth/login', authCtrl.login);
+    router.post('/auth/logout', authCtrl.logout);
 
     router.get('/auth/spotify', spotifyAuthCtrl.login);
     router.get('/auth/spotify/callback', spotifyAuthCtrl.loginCallback);

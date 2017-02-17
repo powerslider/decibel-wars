@@ -9,10 +9,6 @@ import favicon from 'serve-favicon';
 import ejs from 'ejs';
 
 
-
-import controllers from '../controllers';
-
-
 export default function (app, config) {
     // use ejs and set views and static directories
 

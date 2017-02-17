@@ -98,6 +98,7 @@ class DataIndexer {
         return this.elasticClient.search({
             index: indexName,
             type: indexType,
+            size: 50,
             body: {
                 query: {
                     multi_match: {

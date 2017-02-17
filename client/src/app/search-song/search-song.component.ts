@@ -19,8 +19,8 @@ export class SearchSongComponent implements OnInit {
   private onSearchClicked() {
     this.songsService.getSongs(this.searchText);
     this.songs = [
-      { title: "When I'm gone", artist: "Eminem", year: 2005 },
-      { title: "Not afraid", artist: "Eminem", year: 2010 }
+      { name: "When I'm gone", artists: ["Eminem"], album: "Alabala" },
+      { name: "Not afraid", artists: ["Eminem"], album: "Balaala"}
     ];
   }
 }

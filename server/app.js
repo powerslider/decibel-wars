@@ -10,7 +10,7 @@ import routes from './app/config/routes';
 
 import SongIndexer from './app/search/song-indexer';
 //
-// let songIndexer = new SongIndexer();
+let songIndexer = new SongIndexer();
 // songIndexer.indexSongData();
 // songIndexer.suggestSongs('tropic')
 //     .then((response) => {

@@ -1,7 +1,7 @@
 import DataIndexer from './data-indexer';
 import logger from '../config/logger';
 import _ from 'lodash';
-import songsData from '../../data/spotify-data.js';
+import songsData from '../../data/music_data.js';
 
 
 const INDEX_NAME = 'songs_index';
