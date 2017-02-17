@@ -20,7 +20,7 @@ export class AppLoginComponent implements OnInit {
     }
 
     onLoginClicked() {
-
+        this.loginService.login();
     }
 
 }

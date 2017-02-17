@@ -23,4 +23,12 @@ export class SearchSongComponent implements OnInit {
       { name: "Not afraid", artists: ["Eminem"], album: "Balaala"}
     ];
   }
+
+  private onSearch() {
+    this.songsService.getSongs(this.searchText);
+    this.songs = [
+      { name: "When I'm gone", artists: ["Eminem"], album: "Alabala" },
+      { name: "Not afraid", artists: ["Eminem"], album: "Balaala"}
+    ];
+  }
 }

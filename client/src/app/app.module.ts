@@ -24,7 +24,7 @@ const appRoutes: Routes = [
     {path: 'login', component: AppLoginComponent},
     {path: 'search-song', component: SearchSongComponent},
     {path: 'request-song', component: RequestSongComponent},
-    {path: '', redirectTo: '/login', pathMatch: 'full'}
+    {path: '', redirectTo: 'search-song', pathMatch: 'full'}
 ];
 
 @NgModule({
