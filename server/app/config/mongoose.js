@@ -7,7 +7,7 @@ export default function (config, logger) {
         logger.warn(`bad credentials for ${config.db} -- check env.`);
 
     mongoose.connect(config.db);
-        // , {
+    //     , {
     //     user: config.user,
     //     pass: config.pass
     // });
@@ -16,4 +16,6 @@ export default function (config, logger) {
     db.on('error', () => {
         throw new Error(`unable to connect to database at ${config.db}`);
     });
+
+    return db;
 }

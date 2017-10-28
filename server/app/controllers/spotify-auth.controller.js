@@ -11,10 +11,10 @@ const REDIRECT_URI = 'http://localhost:5000/auth/spotify/callback';
 const AUTH_HEADER_VAL = 'Basic ' + (new Buffer(APP_KEY + ':' + APP_SECRET).toString('base64'));
 const STATE_KEY = 'spotify_auth_state';
 
-var generateRandomString = length => {
+let generateRandomString = length => {
     let text = '',
         possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for (var i = 0; i < length; i++) {
+    for (let i = 0; i < length; i++) {
         // your application requests authorization
         text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
@@ -32,7 +32,7 @@ const CLIENT_CRED_OPTIONS = {
     json: true
 };
 
-var AUTH_OPTIONS = code => {
+let AUTH_OPTIONS = code => {
     return {
         url: SPOTIFY_ACCOUNT_SERVICE_URL,
         form: {
@@ -45,7 +45,7 @@ var AUTH_OPTIONS = code => {
     }
 };
 
-var REFRESH_TOKEN_OPTIONS = refreshToken => {
+let REFRESH_TOKEN_OPTIONS = refreshToken => {
     return {
         url: SPOTIFY_ACCOUNT_SERVICE_URL,
         headers: {'Authorization': AUTH_HEADER_VAL},

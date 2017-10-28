@@ -1,12 +1,17 @@
-version: '2'
+version: '2.1'
 services:
   backend:
     build: ./server
     ports:
-      - 5000:80
+      - 5000:5000
     depends_on:
-      - elasticsearch
-      - mongodb
+      elasticsearch:
+        condition: service_healthy
+      mongodb:
+        condition: service_started
+    networks:
+      - dbwars
+
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:5.4.0
     container_name: elasticsearch
@@ -24,7 +29,13 @@ services:
     ports:
       - 9200:9200
     networks:
-      - esnet
+      - dbwars
+    healthcheck:
+      test: ["CMD", "curl", "http://localhost:9200"]
+      interval: 5s
+      timeout: 21s
+      retries: 4
+
   mongodb:
     image: mongo:latest
     container_name: mongodb
@@ -34,7 +45,9 @@ services:
     volumes:
       - ./data/db:/data/db
     ports:
-        - 27017:27017
+      - 27017:27017
+    networks:
+      - dbwars
     command: mongod --smallfiles --logpath=/dev/null # --quiet
 
 volumes:
@@ -42,5 +55,5 @@ volumes:
     driver: local
 
 networks:
-  esnet:
+  dbwars:
 

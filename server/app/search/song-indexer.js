@@ -35,11 +35,11 @@ const INDEX_MAPPING_OBJ = {
     }
 };
 
-var makeBulkCallback = (docsList, callback) => {
+let makeBulkCallback = (docsList, callback) => {
     let playlistObjects = _.values(docsList.playlists);
     let bulkList = [];
     _.each(playlistObjects, playlist => {
-        _.each(playlist.tracks, (track, i)=> {
+        _.each(playlist.tracks, (track, i) => {
             bulkList.push(
                 {index: {_index: INDEX_NAME, _type: INDEX_TYPE, _id: i}},
                 {

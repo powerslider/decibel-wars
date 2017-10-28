@@ -26,7 +26,7 @@ export default function (app, config) {
     app.use(compress());
     app.use(cookieParser());
 
-    app.use(favicon(path.join(config.root, 'client/src/favicon.ico')));
+    //app.use(favicon(path.join(config.root, 'client/src/favicon.ico')));
 
     // serve the ng build application as static resources
     // to create directory 'app-build' - execute 'ng build' at client directory 

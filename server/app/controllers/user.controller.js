@@ -25,7 +25,7 @@ class UserController {
     }
 
     getUsers(req, res) {
-        var userId = req.query.uId;
+        let userId = req.query.uId;
         if (userId) {
             User.find({_id: userId}).exec((err, user) => {
                 if (err) {
@@ -54,7 +54,7 @@ class UserController {
             let crypto = new Crypto();
 
             if (collection.length === 0) {
-                var salt,
+                let salt,
                     hashPass;
                 salt = crypto.generateSalt();
                 hashPass = crypto.generateHashPassword(salt, '123');
